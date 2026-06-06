@@ -103,16 +103,12 @@ for alpha in "${alphas[@]}"; do
           \"python3 -m scripts.04_model_training --graph_with_class --metric='f1-score' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=2\"
 
         parallel ::: \
-          \"python3 -m scripts.03_graph_construction --graph_with_class --metric='accuracy' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
-          \"python3 -m scripts.03_graph_construction --graph_with_class --metric='f1-score' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
-          \"python3 -m scripts.03_graph_construction --metric='accuracy' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
-          \"python3 -m scripts.03_graph_construction --metric='f1-score' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\"
+          \"python3 -m scripts.03_graph_construction --graph_with_class --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
+          \"python3 -m scripts.03_graph_construction --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\"
 
         parallel ::: \
-          \"python3 -m scripts.04_model_training --metric='accuracy' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
-          \"python3 -m scripts.04_model_training --metric='f1-score' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
-          \"python3 -m scripts.04_model_training --graph_with_class --metric='accuracy' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
-          \"python3 -m scripts.04_model_training --graph_with_class --metric='f1-score' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\"
+          \"python3 -m scripts.04_model_training --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
+          \"python3 -m scripts.04_model_training --graph_with_class --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\"
 
         echo \"✅ [\$(date '+%Y-%m-%d %H:%M:%S')] FIN du traitement pour alpha=$alpha\"
       } > \"$LOG_FILE\" 2>&1
