@@ -741,7 +741,7 @@ def make_mlna_k_variable_v2(
     copT[target_variable] = y_train.copy(deep=True)
 
     # Boucle sur les valeurs de k (ici fixé à k=2)
-    for k in list([2]): # Peut être étendu: range(2, len(OHE)+1)
+    for k in range(2, len(OHE)+1): # Peut être étendu: range(2, len(OHE)+1)
 
         # Génération de toutes les combinaisons de k variables
         # get_combinations(range(len(OHE)), k) retourne les indices des variables
@@ -1447,7 +1447,7 @@ def main():
     if args.turn == 3:
         # Vérification si déjà complété
         if sum(['graph_turn_3_completed.dtvni' == file for _, _, files in
-                os.walk(args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/mlna_2/') for
+                os.walk(args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/random/') for
                 file in files]) > 0:
             print("✅ COMBINATORY MLNA 2 Graph  already completed")
         else:
@@ -1459,7 +1459,7 @@ def main():
                 y_testi=y_testi,
                 OHE=OHE,
                 nominal_factor_colums=columns,
-                cwd = args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}',
+                cwd = args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/random',
                 root= args.cwd,
                 domain= domain,
                 target_variable= target_variable,
@@ -1469,7 +1469,7 @@ def main():
 
             # Création du fichier flag de complétion
             with open(
-                    args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/mlna_2/graph_turn_3_completed.dtvni',
+                    args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/random/graph_turn_3_completed.dtvni',
                     "a") as fichier:
                 fichier.write("")
 

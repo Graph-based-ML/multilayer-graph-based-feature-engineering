@@ -1,4 +1,4 @@
 cwd="$(pwd)"
 # Tableaux Bash
-alphas=(0.20 0.50 0.80)
+alphas=(0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.85 0.90)
 graphWithClass=("True" "False")

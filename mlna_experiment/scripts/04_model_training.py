@@ -1163,7 +1163,8 @@ def make_mlna_k_variable_v2(
         withCost,
         financialOption,
         original,
-        graphWithClass=True
+        graphWithClass=True,
+        both=False
 ):
     # local eval storage
     logic_g = []
@@ -1175,7 +1176,7 @@ def make_mlna_k_variable_v2(
     PERSONS = get_persons(x_train)
     PERSONS_T = get_persons(x_test)
 
-    for k in list([2]):  # for 1<k<|OHE[i]|+2
+    for k in  range(2, len(OHE)+1):  # for 1<k<|OHE[i]|+2
         # for k in [2]: # for 1<k<|OHE[i]|+2
         # for k in range(2:len(OHE)+1: # for 1<k<|OHE[i]|+2
         for layer_config in get_combinations(range(len(OHE)), k):  # create subsets of k index of OHE and fetch it
@@ -1233,7 +1234,8 @@ def make_mlna_k_variable_v2(
                 logic_i_pg=logic_i_pg,
                 mlnL= f'/mlna_{k}',
                 original = original,
-                name=case_k
+                name=case_k,
+                both=both
             )
             extracts_g = None
             extracts_p = None
@@ -1274,7 +1276,8 @@ def make_mlna_k_variable_v2(
                 mlc_cf=mlc_cf,
                 mlnL=f'/mlna_{k}',
                 original= original,
-                name=case_k
+                name=case_k,
+                both=both
             )
 
             ########### END
@@ -1811,10 +1814,10 @@ def main():
                 y_testi=y_testi,
                 OHE=OHE,
                 nominal_factor_colums=columns,
-                cwd = args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}',
+                cwd = args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/random',
                 domain= domain,
                 target_variable= target_variable,
-                graphWithClass=False,
+                graphWithClass=args.graph_with_class,
                 fix_imbalance=False,
                 withCost=cost,
                 financialOption = ast.literal_eval(financialOption) if cost else None,
@@ -1823,10 +1826,11 @@ def main():
                 original=original,
                 default=default,
                 clfs=clfs,
-                verbose=verbose
+                verbose=verbose,
+                both=True
             )
             with open(
-                    args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/mlna_2/model_turn_3_completed.dtvni',
+                    args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/random/model_turn_3_completed.dtvni',
                     "a") as fichier:
                 fichier.write("")
 
