@@ -1705,7 +1705,7 @@ def main():
                 default=default,
                 clfs=clfs,
                 verbose=verbose,
-                both=True
+                both=args.graph_with_class
             )
             if args.graph_with_class is False:
                 outAccperformers = dict(sorted(outAccperformers.items(), key=lambda x: x[1], reverse=True))
@@ -1795,7 +1795,7 @@ def main():
                 default=default,
                 clfs=clfs,
                 verbose=verbose,
-                both=True
+                both=args.graph_with_class
             )
             with open(
                     args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/select{"/"+args.metric if args.metric.strip() else ""}/model_turn_2_completed.dtvni',
@@ -1803,7 +1803,7 @@ def main():
                 fichier.write("")
     if args.turn == 3:
         if sum(['model_turn_3_completed.dtvni' == file for _, _, files in
-                os.walk(args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/mlna_2/') for
+                os.walk(args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/random/') for
                 file in files]) > 0:
             print("✅ COMBINATORY MLNA 2 Model  already completed")
         else:
@@ -1827,7 +1827,7 @@ def main():
                 default=default,
                 clfs=clfs,
                 verbose=verbose,
-                both=True
+                both=args.graph_with_class
             )
             with open(
                     args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/random/model_turn_3_completed.dtvni',

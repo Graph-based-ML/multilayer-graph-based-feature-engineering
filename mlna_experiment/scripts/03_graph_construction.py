@@ -1405,7 +1405,7 @@ def main():
         if sum(['graph_turn_2_completed.dtvni' == file for _, _, files in
                 os.walk(args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/select{"/"+args.metric if args.metric.strip() else ""}/') for
                 file in files]) > 0:
-            print("✅ MLNA 1 Graph already completed")
+            print("✅ MLNA TOP N Graph already completed")
         else:
 
             # Chargement des résultats de sélection MNIFS
