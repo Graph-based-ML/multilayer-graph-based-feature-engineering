@@ -4,6 +4,7 @@ set -e  # Arrête le script si une commande échoue
 # Fichier de configuration
 CONFIG_FILE="env.sh"
 VENV_PATH=".env_mlna"
+RUN_TURN3=false
 
 # paramètres d'exécution
 param1=$1
@@ -102,13 +103,15 @@ for alpha in "${alphas[@]}"; do
           \"python3 -m scripts.04_model_training --graph_with_class --metric='accuracy' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=2\" \
           \"python3 -m scripts.04_model_training --graph_with_class --metric='f1-score' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=2\"
 
-        parallel ::: \
-          \"python3 -m scripts.03_graph_construction --graph_with_class --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
-          \"python3 -m scripts.03_graph_construction --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\"
+        if \$RUN_TURN3; then
+          parallel ::: \
+            \"python3 -m scripts.03_graph_construction --graph_with_class --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
+            \"python3 -m scripts.03_graph_construction --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\"
 
-        parallel ::: \
-          \"python3 -m scripts.04_model_training --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
-          \"python3 -m scripts.04_model_training --graph_with_class --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\"
+          parallel ::: \
+            \"python3 -m scripts.04_model_training --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
+            \"python3 -m scripts.04_model_training --graph_with_class --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\"
+        fi
 
         echo \"✅ [\$(date '+%Y-%m-%d %H:%M:%S')] FIN du traitement pour alpha=$alpha\"
       } > \"$LOG_FILE\" 2>&1
