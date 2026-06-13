@@ -1102,7 +1102,7 @@ Junior Data Scientist @freelance
 Senior FullStack Developer @freelance
 Community Lead @World
     """,
-        CAN_SEND=False
+        CAN_SEND=True
     )
     with open(
             args.cwd + f'/{results_dir}{domain}/reporting_completed.dtvni',
