@@ -1705,7 +1705,7 @@ def main():
                 default=default,
                 clfs=clfs,
                 verbose=verbose,
-                both=args.graph_with_class
+                both=True
             )
             if args.graph_with_class is False:
                 outAccperformers = dict(sorted(outAccperformers.items(), key=lambda x: x[1], reverse=True))
@@ -1795,7 +1795,7 @@ def main():
                 default=default,
                 clfs=clfs,
                 verbose=verbose,
-                both=args.graph_with_class
+                both=True
             )
             with open(
                     args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/select{"/"+args.metric if args.metric.strip() else ""}/model_turn_2_completed.dtvni',
@@ -1827,7 +1827,7 @@ def main():
                 default=default,
                 clfs=clfs,
                 verbose=verbose,
-                both=args.graph_with_class
+                both=True
             )
             with open(
                     args.cwd + f'/{results_dir}{domain}/{args.alpha}/{target_columns_type}/random/model_turn_3_completed.dtvni',
