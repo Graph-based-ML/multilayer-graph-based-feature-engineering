@@ -136,7 +136,7 @@ install_latex() {
         ubuntu|debian)
             print_info "Installation de LaTeX sur $os..."
             sudo apt-get update
-            sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+            sudo apt-get install -y texlive-science texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
             ;;
         fedora)
             print_info "Installation de LaTeX sur Fedora..."
