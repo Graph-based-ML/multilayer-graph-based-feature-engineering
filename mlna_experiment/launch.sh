@@ -103,7 +103,7 @@ for alpha in "${alphas[@]}"; do
           \"python3 -m scripts.04_model_training --graph_with_class --metric='accuracy' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=2\" \
           \"python3 -m scripts.04_model_training --graph_with_class --metric='f1-score' --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=2\"
 
-        if \$RUN_TURN3; then
+        if $RUN_TURN3; then
           parallel ::: \
             \"python3 -m scripts.03_graph_construction --graph_with_class --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\" \
             \"python3 -m scripts.03_graph_construction --cwd=$cwd --dataset_folder=$param1 --alpha=$alpha --turn=3\"
